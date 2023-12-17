@@ -1,6 +1,6 @@
-import Container from "./Container";
-import Footer from "./Footer";
-import HashtagList from "./HashtagList";
+import Container from "./Components/Container";
+import Footer from "./Components/Footer";
+import HashtagList from "./Components/HashtagList";
 
 function App() {
   return (
