@@ -3,6 +3,6 @@ export type TFeedbackItem = {
   badgeLetter: string;
   companyName: string;
   text: string;
-  daysago: number;
+  daysAgo: number;
   id: number;
 };
