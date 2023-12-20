@@ -1,19 +1,36 @@
+import { useEffect, useState } from "react";
 import FeedbackItem from "./FeedbackItem";
+import Spinner from "./Spinner";
 
-const feedbackItem = {
-  upvoteCount: 593,
-  badgeLetter: "B",
-  companyName: "ByteGrad",
-  text: "text test test",
-  dayago: 4,
-};
-
-const feedbackItems = [feedbackItem];
 const FeedbackList = () => {
+  const [feedbackItems, setFeedbackItems] = useState([]);
+  const [isloading, setIsloading] = useState(false);
+
+  const commentFetching = async () => {
+    setIsloading(true);
+    try {
+      const responce = await fetch(
+        "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
+      );
+      if (!responce.ok) {
+        throw new Error();
+      }
+      const data = await responce.json();
+      setFeedbackItems(data.feedbacks);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsloading(false);
+  };
+
+  useEffect(() => {
+    commentFetching();
+  }, []);
   return (
     <ol className="feedback-list">
+      {isloading && <Spinner />}
       {feedbackItems.map((feedbackItem) => (
-        <FeedbackItem feedbackItem={feedbackItem} />
+        <FeedbackItem key={feedbackItem.id} feedbackItem={feedbackItem} />
       ))}
     </ol>
   );
