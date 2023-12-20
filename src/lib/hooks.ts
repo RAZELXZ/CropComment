@@ -13,7 +13,7 @@ export const usefeedbackhooks = () => {
     const newItem: TFeedbackItem = {
       id: new Date().getTime(),
       text: text,
-      dayago: 0,
+      daysago: 0,
       companyName: companyName,
       upvoteCount: 0,
       badgeLetter: companyName.substring(0, 1).toUpperCase(),

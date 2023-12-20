@@ -20,7 +20,7 @@ const FeedbackItem = ({ feedbackItem }: FeedbackItemProps) => {
         <p>{feedbackItem.text}</p>
       </div>
 
-      <p>{feedbackItem.dayago}</p>
+      <p>{feedbackItem.daysago}</p>
     </li>
   );
 };
