@@ -570,7 +570,7 @@ form button span::selection {
   border-right: 7px solid #e2e7e9;
   border-bottom: 7px solid #e2e7e9;
   border-left: 7px solid #ccd1d3;
-  animation: spinner 1s infinite linear;
+  animation: spinner 1s infinite;
 }
 
 h1 > span {
