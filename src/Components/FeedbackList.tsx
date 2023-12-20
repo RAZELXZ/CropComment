@@ -1,51 +1,16 @@
-import { useEffect, useState } from "react";
 import FeedbackItem from "./FeedbackItem";
 import Spinner from "./Spinner";
 import { TFeedbackItem } from "../lib/type";
 
-const FeedbackList = () => {
-  const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
-  const [isloading, setIsloading] = useState(false);
+type FeedbackListProps = {
+  isLoading: boolean;
+  feedbackItems: TFeedbackItem[];
+};
 
-  const handleAddToList = (text: String) => {
-    const companyName = text
-      .split(" ")
-      .find((word) => word.includes("#"))!
-      .substring(1);
-    const newItem: TFeedbackItem = {
-      id: new Date().getTime(),
-      text: text,
-      dayago: 0,
-      companyName: companyName,
-      upvoteCount: 0,
-      badgeLetter: companyName.substring(0, 1).toUpperCase(),
-    };
-    setFeedbackItems([...feedbackItems, newItem]);
-  };
-
-  const commentFetching = async () => {
-    setIsloading(true);
-    try {
-      const responce = await fetch(
-        "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
-      );
-      if (!responce.ok) {
-        throw new Error();
-      }
-      const data = await responce.json();
-      setFeedbackItems(data.feedbacks);
-    } catch (error) {
-      console.log(error);
-    }
-    setIsloading(false);
-  };
-
-  useEffect(() => {
-    commentFetching();
-  }, []);
+const FeedbackList = ({ isLoading, feedbackItems }: FeedbackListProps) => {
   return (
     <ol className="feedback-list">
-      {isloading && <Spinner />}
+      {isLoading && <Spinner />}
       {feedbackItems.map((feedbackItem) => (
         <FeedbackItem key={feedbackItem.id} feedbackItem={feedbackItem} />
       ))}
