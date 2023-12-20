@@ -8,7 +8,7 @@ function App() {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isloading, setIsloading] = useState(false);
 
-  const handleAddToList = (text: String) => {
+  const handleAddToList = (text: string) => {
     const companyName = text
       .split(" ")
       .find((word) => word.includes("#"))!

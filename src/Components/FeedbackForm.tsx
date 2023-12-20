@@ -19,6 +19,7 @@ const FeedbackForm = ({ onAddToList }: FeedbackFromProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onAddToList(text);
+    setText("");
   };
   return (
     <form className="form" onSubmit={handleSubmit}>
