@@ -1,10 +1,27 @@
 import { useEffect, useState } from "react";
 import FeedbackItem from "./FeedbackItem";
 import Spinner from "./Spinner";
+import { TFeedbackItem } from "../lib/type";
 
 const FeedbackList = () => {
-  const [feedbackItems, setFeedbackItems] = useState([]);
+  const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isloading, setIsloading] = useState(false);
+
+  const handleAddToList = (text: String) => {
+    const companyName = text
+      .split(" ")
+      .find((word) => word.includes("#"))!
+      .substring(1);
+    const newItem: TFeedbackItem = {
+      id: new Date().getTime(),
+      text: text,
+      dayago: 0,
+      companyName: companyName,
+      upvoteCount: 0,
+      badgeLetter: companyName.substring(0, 1).toUpperCase(),
+    };
+    setFeedbackItems([...feedbackItems, newItem]);
+  };
 
   const commentFetching = async () => {
     setIsloading(true);
