@@ -1,7 +1,7 @@
 import Container from "./Components/Container";
 import Footer from "./Components/Footer";
 import HashtagList from "./Components/HashtagList";
-import usefeedbackhooks from "./lib/hooks";
+import { usefeedbackhooks } from "./lib/hooks";
 
 function App() {
   const { feedbackItems, isloading, handleAddToList } = usefeedbackhooks();

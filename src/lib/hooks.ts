@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TFeedbackItem } from "./type";
 
-const usefeedbackhooks = () => {
+export const usefeedbackhooks = () => {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isloading, setIsloading] = useState(false);
 
@@ -48,5 +48,3 @@ const usefeedbackhooks = () => {
     handleAddToList: handleAddToList,
   };
 };
-
-export default usefeedbackhooks;
