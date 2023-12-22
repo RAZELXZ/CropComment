@@ -5,6 +5,12 @@ export const usefeedbackhooks = () => {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isloading, setIsloading] = useState(false);
 
+  const companies = feedbackItems
+    .map((c) => c.company)
+    .filter((c, index, array) => {
+      return array.indexOf(c) === index;
+    });
+
   const handleAddToList = (text: string) => {
     const company = text
       .split(" ")
@@ -65,5 +71,6 @@ export const usefeedbackhooks = () => {
     feedbackItems: feedbackItems,
     isloading: isloading,
     handleAddToList: handleAddToList,
+    companies: companies,
   };
 };

@@ -1,10 +1,11 @@
 import Container from "./Components/layout/Container";
 import Footer from "./Components/layout/Footer";
-import HashtagList from "./Components/HashtagList";
+import HashtagList from "./Components/hashtag/HashtagList";
 import { usefeedbackhooks } from "./lib/hooks";
 
 function App() {
-  const { feedbackItems, isloading, handleAddToList } = usefeedbackhooks();
+  const { feedbackItems, isloading, handleAddToList, companies } =
+    usefeedbackhooks();
   return (
     <div className="app">
       <Footer />
@@ -15,7 +16,7 @@ function App() {
         handleAddToList={handleAddToList}
       />
 
-      <HashtagList />
+      <HashtagList companies={companies} />
     </div>
   );
 }
