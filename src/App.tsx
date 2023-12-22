@@ -1,5 +1,5 @@
-import Container from "./Components/Container";
-import Footer from "./Components/Footer";
+import Container from "./Components/layout/Container";
+import Footer from "./Components/layout/Footer";
 import HashtagList from "./Components/HashtagList";
 import { usefeedbackhooks } from "./lib/hooks";
 

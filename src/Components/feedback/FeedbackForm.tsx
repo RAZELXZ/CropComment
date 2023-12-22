@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MAX_CHARACTERS } from "../lib/constains";
+import { MAX_CHARACTERS } from "../../lib/constains";
 
 type FeedbackFromProps = {
   onAddToList: (text: string) => void;
