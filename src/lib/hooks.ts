@@ -6,7 +6,7 @@ export const usefeedbackhooks = () => {
   const [isloading, setIsloading] = useState(false);
 
   const handleAddToList = (text: string) => {
-    const companyName = text
+    const company = text
       .split(" ")
       .find((word) => word.includes("#"))!
       .substring(1);
@@ -14,11 +14,30 @@ export const usefeedbackhooks = () => {
       id: new Date().getTime(),
       text: text,
       daysAgo: 0,
-      companyName: companyName,
+      company: company,
       upvoteCount: 0,
-      badgeLetter: companyName.substring(0, 1).toUpperCase(),
+      badgeLetter: company.substring(0, 1).toUpperCase(),
     };
     setFeedbackItems([...feedbackItems, newItem]);
+    comentSubmiting(newItem);
+  };
+
+  const comentSubmiting = async (newItem: TFeedbackItem) => {
+    try {
+      fetch(
+        "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks",
+        {
+          method: "POST",
+          body: JSON.stringify(newItem),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const commentFetching = async () => {

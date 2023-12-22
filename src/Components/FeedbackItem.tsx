@@ -16,11 +16,11 @@ const FeedbackItem = ({ feedbackItem }: FeedbackItemProps) => {
       </div>
 
       <div>
-        <p>{feedbackItem.companyName}</p>
+        <p>{feedbackItem.company}</p>
         <p>{feedbackItem.text}</p>
       </div>
 
-      <p>{feedbackItem.daysAgo + "d"}</p>
+      <p>{feedbackItem.daysAgo === 0 ? "NEW" : feedbackItem.daysAgo + "d"}</p>
     </li>
   );
 };
