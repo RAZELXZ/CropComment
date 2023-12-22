@@ -1,15 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { TFeedbackItem } from "./type";
 
 export const usefeedbackhooks = () => {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isloading, setIsloading] = useState(false);
+  const [selected, setSelected] = useState("");
 
-  const companies = feedbackItems
-    .map((c) => c.company)
-    .filter((c, index, array) => {
-      return array.indexOf(c) === index;
-    });
+  const companies = useMemo(
+    () =>
+      feedbackItems
+        .map((c) => c.company)
+        .filter((c, index, array) => {
+          return array.indexOf(c) === index;
+        }),
+    [feedbackItems]
+  );
 
   const handleAddToList = (text: string) => {
     const company = text
@@ -67,10 +72,25 @@ export const usefeedbackhooks = () => {
     commentFetching();
   }, []);
 
+  const filteredFeedbackItems = useMemo(
+    () =>
+      selected
+        ? feedbackItems.filter((i) => i.company === selected)
+        : feedbackItems,
+    [feedbackItems, selected]
+  );
+
+  const onSetselected = (company: string) => {
+    setSelected(company);
+    console.log(selected);
+    setFeedbackItems(filteredFeedbackItems);
+    console.log(feedbackItems);
+  };
   return {
     feedbackItems: feedbackItems,
     isloading: isloading,
     handleAddToList: handleAddToList,
     companies: companies,
+    onSetselected: onSetselected,
   };
 };

@@ -7,9 +7,9 @@ type HashtagProps = {
 const HashtagList = ({ companies }: HashtagProps) => {
   return (
     <ul className="hashtags">
-      {companies.map((c) => {
-        return <HashtagItem company={c} />;
-      })}
+      {companies.map((c) => (
+        <HashtagItem company={c} />
+      ))}
     </ul>
   );
 };
