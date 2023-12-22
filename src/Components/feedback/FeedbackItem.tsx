@@ -6,15 +6,21 @@ type FeedbackItemProps = { feedbackItem: TFeedbackItem };
 
 const FeedbackItem = ({ feedbackItem }: FeedbackItemProps) => {
   const [opened, setOpened] = useState(false);
+  const [upvote, setUpvote] = useState(feedbackItem.upvoteCount);
 
+  const handleUpvote = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setUpvote((prev) => ++prev);
+    e.currentTarget.disabled = true;
+    e.stopPropagation();
+  };
   return (
     <li
       onClick={() => setOpened(!opened)}
       className={`feedback ${opened ? "feedback--expand" : ""}`}
     >
-      <button>
+      <button onClick={handleUpvote}>
         <TriangleUpIcon />
-        <span>{feedbackItem.upvoteCount}</span>
+        <span>{upvote}</span>
       </button>
 
       <div>
